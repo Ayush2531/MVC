@@ -1,0 +1,78 @@
+<?php
+$salesman = $this->salesman;
+?>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>edit Salesman</title>
+	
+	
+		
+</head>
+<body>
+	<?php $this->setTemplate('html/header.phtml')->render();?>
+
+
+<form action="<?php echo $this->getUrl('save')?>" method="post">
+
+		<div class="body1">
+			EDIT salesman
+			<button><a href="<?php echo $this->getUrl('grid') ?>">Cancel</a></button>
+
+			<button type="submit" class="body2">Save</button>
+		</div>
+
+	</div>
+
+	<table class="t1" border="1">
+		<tr >
+			<td colspan="2"> salesman Information</td>
+		</tr>
+		<tr >
+			<input type="hidden" name="id" value="<?php echo $salesman->salesman_id;?>">
+		</tr>
+		<tr>
+			<td>first_name : </td>
+			<td><input type="text" name="salesman[first_name]" value="<?php echo $salesman->first_name;?>"></td>
+		</tr>
+		<tr>
+			<td>last_name : </td>
+			<td><input type="text" name="salesman[last_name]" value="<?php echo $salesman->last_name;?>"></td>
+		</tr>
+		<tr>
+			<td>email : </td>
+			<td><input type="text" name="salesman[email]" value="<?php echo $salesman->email; ?>"></td>
+		</tr>
+		<tr>
+			<td>gender : </td>
+			<td><input type="text" name="salesman[gender]" value="<?php echo $salesman->gender; ?>"></td>
+		</tr>
+		<tr>
+			<td>mobile : </td>
+			<td><input type="text" name="salesman[mobile]" value="<?php echo $salesman->mobile; ?>"></td>
+		</tr>
+		<tr>
+			<td>Status : </td>
+			<td>
+				<select name="salesman[status]">
+					<?php foreach ($salesman->getStatusOptions() as $key => $value) : ?>
+					<?php $selected = ($key == $salesman->getStatus()) ? "selected" : ''; ?>
+					<option value="<?php echo $key; ?>" <?php echo $selected;?>><?php echo $value; ?></option>
+					<?php endforeach; ?>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>company : </td>
+			<td><input type="text" name="salesman[company]" value="<?php echo $salesman->company; ?>"></td>
+		</tr>
+
+	</table>
+		
+	</form>
+		<?php include'C:\xampp\htdocs\project\View\html\footer.phtml'; ?>
+
+</body>
+</html>

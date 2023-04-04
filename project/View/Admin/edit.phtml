@@ -1,0 +1,63 @@
+<?php
+
+$admin = $this->admin; 
+
+ 
+
+?>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Edit admin</title>
+</head>
+<body>
+		<?php $this->setTemplate('html/header.phtml')->render();?>
+	
+
+
+<form action="<?php echo $this->getUrl('save')?>" method="post">
+		<div >
+			<h2>EDIT admin</h2>
+		<div >
+			<button><a href="<?php echo $this->getUrl('grid') ?>">Cancel</a></button>
+	
+			<button type="submit">Save</button>
+		</div>
+	</div>
+	<div>
+		
+			<table>
+				<tr>
+					<th>admin INFORMATION</th>
+				</tr>
+		<tr>
+			<td></td>
+			<td><input type="hidden" name="id" value="<?php echo $admin->admin_id; ?>"></td>
+		</tr>
+		<tr>
+			<td>email</td>
+			<td><input type="text" name="admin[email]" value="<?php echo $admin->email; ?>"></td>
+		</tr>
+		<tr>
+			<td>password</td>
+			<td><input type="password" name="admin[password]" value="<?php echo $admin->password; ?>"></td>
+		</tr>
+		
+		<tr>
+			<td>Status</td>
+			<td>
+				<select name="admin[status]">
+					<?php foreach ($admin->getStatusOptions() as $key => $value) : ?>
+					<?php $selected = ($key == $admin->getStatus()) ? "selected" : ''; ?>
+					<option value="<?php echo $key; ?>" <?php echo $selected;?>><?php echo $value; ?></option>
+					<?php endforeach; ?>
+				</select>
+			</td>
+		</tr>
+	</table>
+</div>
+</form>
+		<?php $this->getTemplate('html/footer.phtml'); ?>
+
+</body>
+</html>

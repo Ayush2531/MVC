@@ -1,0 +1,77 @@
+<?php 
+
+$products = $this->products; 
+
+?>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Product Grid</title>
+</head>
+<body>
+		<?php $this->setTemplate('html/header.phtml')->render();?>
+	<?php $this->setTemplate('html/message.phtml')->render();?>
+	<div>
+		<h3>MANAGE PRODUCT</h3>
+		<button class="body2" type="button" name="Add product" value="Add product"   ><a href="<?php echo $this->getUrl('add') ?>"> Add product </a> </button>
+	</div>
+	<div>
+		<table width="100%" align="center" border=1px>
+			<tr>
+				<th>Product ID</th>
+				<th>Name</th>
+				<th>SKU</th>
+				<th>Cost</th>
+				<th>Price</th>
+				<th>Quantity</th>
+				<th>Description</th>
+				<th>Status</th>
+				<th>Color</th>
+				<th>Material</th>
+				<th>Media</th>
+				<th>Edit</th>
+				<th>Delete</th>
+			</tr>
+			<?php
+			foreach ($products as $product) {
+			?>
+			<tr>
+					<td><?php echo $product->product_id ?></td>
+					<td><?php echo $product->name ?></td>
+					<td><?php echo $product->sku ?></td>
+					<td><?php echo $product->cost ?></td>
+					<td><?php echo $product->price ?></td>
+					<td><?php echo $product->quantity ?></td>
+					<td><?php echo $product->description ?></td>
+					<td><?php echo $product->getStatusText(); ?></td>
+					<td><?php echo $product->color ?></td>
+					<td><?php echo $product->material ?></td>
+					<td>
+						<a href="<?php echo $this->getUrl('grid','product_Media',['id'=>$product->product_id])?>">
+					Media</a>
+					</td>
+					<td>
+						<a href="<?php echo $this->getUrl('edit',null,['id'=>$product->product_id])?>">
+					Edit</a>
+					</td>
+					<td>
+						<a href="<?php echo $this->getUrl('delete',null,['id'=>$product->product_id])?>">
+					Delete</a>
+					</td>					
+
+				</tr>
+
+				<?php
+				}
+				?>
+		</table>
+	</div>
+		<?php $this->setTemplate('html/footer.phtml')->render();?>
+		
+
+</body>
+</html>

@@ -1,0 +1,78 @@
+<?php
+$salesmans = $this->salesmans;
+?>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Salesman Grid
+	</title>
+	
+	
+		
+</head>
+<body>
+	<?php $this->setTemplate('html/header.phtml')->render();?>
+	<?php $this->setTemplate('html/message.phtml')->render();?>
+
+	<br><br>
+
+	<div class="body">
+		
+			<h3>MANAGE SALESMAN</h3>
+			<button class="body2" type="button" name="Add salesman" value="Add salesman"   ><a href="<?php echo $this->getUrl('add') ?>"> Add salesman </a> </button>
+		</div>
+		<div>
+			<table class="t1" border="1" width="100%">
+				<tr style="border: 1px solid black;">
+					<th>salesman_id</th>
+					<th>first_name</th>
+					<th>last_name</th>
+					<th>email</th>
+					<th>gender</th>
+					<th>mobile</th>
+					<th>status</th>
+					<th>company</th>
+					<th>Edit</a></th>
+					<th>Delete</th>
+				</tr>
+				<?php
+				foreach ($salesmans as $salesman ) {
+						
+				?>
+				<tr>
+					<td><?php echo $salesman->salesman_id;?></td>
+					<td><?php echo $salesman->first_name;?></td>
+					<td><?php echo $salesman->last_name?></td>
+					<td><?php echo $salesman->email?></td>
+					<td><?php echo $salesman->gender?></td>
+					<td><?php echo $salesman->mobile?></td>
+					<td><?php echo $salesman->getStatusText(); ?></td>
+					<td><?php echo $salesman->company?></td>
+
+
+					<td>
+						<a href="<?php echo $this->getUrl('edit',null,['id'=>$salesman->salesman_id])?>">
+					Edit</a>
+					</td>
+					<td>
+						<a href="<?php echo $this->getUrl('delete',null,['id'=>$salesman->salesman_id])?>">
+					Delete</a>
+					</td>	
+				</tr>
+				<?php 
+				}
+
+				 ?>
+
+
+			</table>
+		
+</div>
+	<?php $this->setTemplate('html/footer.phtml')->render();?>
+
+
+</body>
+</html>
+

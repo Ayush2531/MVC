@@ -1,0 +1,78 @@
+<?php
+$vendor = $this->vendor;
+?>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Edit Vendor</title>
+	
+	
+		
+</head>
+<body>
+	<?php $this->setTemplate('html/header.phtml')->render();?>
+
+
+<form action="<?php echo $this->getUrl('save')?>" method="post">
+
+		<div class="body1">
+			EDIT VENDOR
+			<button><a href="<?php echo $this->getUrl('grid') ?>">Cancel</a></button>
+
+			<button type="submit" class="body2">Save</button>
+		</div>
+
+	</div>
+
+	<table class="t1" border="1">
+		<tr >
+			<td colspan="2"> vendor Information</td>
+		</tr>
+		<tr >
+			<input type="hidden" name="id" value="<?php echo $vendor->vendor_id;?>">
+		</tr>
+		<tr>
+			<td>first_name : </td>
+			<td><input type="text" name="vendor[first_name]" value="<?php echo $vendor->first_name;?>"></td>
+		</tr>
+		<tr>
+			<td>last_name : </td>
+			<td><input type="text" name="vendor[last_name]" value="<?php echo $vendor->last_name;?>"></td>
+		</tr>
+		<tr>
+			<td>email : </td>
+			<td><input type="text" name="vendor[email]" value="<?php echo $vendor->email; ?>"></td>
+		</tr>
+		<tr>
+			<td>gender : </td>
+			<td><input type="text" name="vendor[gender]" value="<?php echo $vendor->gender; ?>"></td>
+		</tr>
+		<tr>
+			<td>mobile : </td>
+			<td><input type="text" name="vendor[mobile]" value="<?php echo $vendor->mobile; ?>"></td>
+		</tr>
+		<tr>
+			<td>Status : </td>
+			<td>
+				<select name="vendor[status]" >
+					<?php foreach ($vendor->getStatusOptions() as $key => $value) : ?>
+					<?php $selected = ($key == $vendor->getStatus()) ? "selected" : ''; ?>
+					<option value="<?php echo $key; ?>" <?php echo $selected;?>><?php echo $value; ?></option>
+					<?php endforeach; ?>
+				</select>
+		</tr>
+		<tr>
+			<td>company : </td>
+			<td><input type="text" name="vendor[company]" value="<?php echo $vendor->company; ?>"></td>
+		</tr>
+
+	</table>
+		
+	</form>
+	<?php $this->setTemplate('html/footer.phtml')->render();?>
+
+
+</body>
+</html>

@@ -1,0 +1,64 @@
+<?php
+$ShippingMethod = $this->shippingMethod;
+?>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Edit Shipping</title>
+
+</head>
+<body>
+		
+		<?php $this->setTemplate('html/header.phtml')->render();?>
+	
+<form action="<?php echo $this->getUrl('save')?>" method="post">
+		<div class="body1">
+			EDIT Shipping METHOD
+			<button class="body2"><a href="index.php?c=ShippingMethod&a=grid" >Cancel</a></button>
+			<button type="submit" class="body2">Save</button>
+		</div>
+
+	</div>
+
+	<table class="t1" border="1">
+		<tr >
+			<td colspan="2"> ShippingMethod Information</td>
+		</tr>
+		<tr >
+			<input type="hidden" name="id" value="<?php echo $ShippingMethod->shipping_method_id;?>">
+		</tr>
+		<tr>
+			<td>name : </td>
+			<td><input type="text" name="ShippingMethod[name]" value="<?php echo $ShippingMethod->name;?>"></td>
+		</tr>
+		<tr>
+			<td>amount : </td>
+			<td><input type="text" name="ShippingMethod[amount]" value="<?php echo $ShippingMethod->amount;?>"></td>
+		</tr>
+		
+		<tr>
+			<td>Status : </td>
+			<td>
+				<select name="ShippingMethod[status]" >
+					<?php foreach ($ShippingMethod->getStatusOptions() as $key => $value) : ?>
+					<?php $selected = ($key == $ShippingMethod->getStatus()) ? "selected" : ''; ?>
+					<option value="<?php echo $key; ?>" <?php echo $selected;?>><?php echo $value; ?></option>
+					<?php endforeach; ?>
+				
+				</select>
+		</tr>
+		
+		
+
+	</table>
+		
+	</form>
+		<?php $this->setTemplate('html/footer.phtml')->render();?>
+
+
+</body>
+</html>
+
+

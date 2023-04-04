@@ -1,0 +1,65 @@
+<?php
+$ShippingMethods = $this->shippingMethods;
+?>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Shipping Grid
+	</title>
+	
+		
+</head>
+<body>
+<?php $this->setTemplate('html/header.phtml')->render();?>
+	<?php $this->setTemplate('html/message.phtml')->render();?>
+	<br><br>
+
+	<div class="body">
+		
+			<h3>MANAGE SHIPPINGs METHOD</h3>
+			<button class="body2" type="button" name="Add catagories" value="Add catagories"   ><a href="<?php echo $this->getUrl('add') ?>"> Add ShippingMethods  </a> </button>
+		</div>
+		<div>
+			<table class="t1" border="1">
+				<tr style="border: 1px solid black;">
+					<th>Shipping_method_id</th>
+					<th>name</th>
+					<th>amount</th>
+					<th>status</th>
+					<td>Edit</td>
+					<td>Delete</td>
+				</tr>
+
+				<?php
+				foreach($ShippingMethods as $ShippingMethod){
+
+
+				?>
+				<tr>
+					<td><?php echo $ShippingMethod->shipping_method_id; ?></td>
+					<td><?php echo $ShippingMethod->name;?></td>
+					<td><?php echo $ShippingMethod->amount;?></td>
+					<td><?php echo $ShippingMethod->getStatusText(); ?></td>
+					<td>
+						<a href="<?php echo $this->getUrl('edit',null,['id'=>$ShippingMethod->shipping_method_id])?>">
+					Edit</a>
+					</td>
+					<td>
+						<a href="<?php echo $this->getUrl('delete',null,['id'=>$ShippingMethod->shipping_method_id])?>">
+					Delete</a>
+					</td>	
+				</tr>
+				<?php
+				}
+				?>
+
+			</table>
+		
+</div>
+		<?php include'C:\xampp\htdocs\project\View\html\footer.phtml'; ?>
+
+</body>
+</html>
+

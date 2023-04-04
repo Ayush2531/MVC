@@ -1,0 +1,60 @@
+<?php 
+
+$admins = $this->admins; 
+
+?>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>admin Grid</title>
+</head>
+<body>
+		<?php $this->setTemplate('html/header.phtml')->render();?>
+	<?php $this->setTemplate('html/message.phtml')->render();?>
+	<div>
+		<h3>MANAGE admin</h3>
+		<button class="body2" type="button" name="Add admin" value="Add admin"   ><a href="<?php echo $this->getUrl('add') ?>"> Add admin </a> </button>
+	</div>
+	<div>
+		<table width="100%" align="center" border=1px>
+			<tr>
+				<th>admin ID</th>
+				<th>email</th>
+				<th>status</th>
+				<th>Edit</th>
+				<th>Delete</th>
+			</tr>
+			<?php
+			foreach ($admins as $admin) {
+			?>
+			<tr>
+					<td><?php echo $admin->admin_id ?></td>
+					<td><?php echo $admin->email ?></td>
+					<td><?php echo $admin->getStatusText(); ?></td>
+
+
+					<td>
+						<a href="<?php echo $this->getUrl('edit',null,['id'=>$admin->admin_id])?>">
+					Edit</a>
+					</td>
+					<td>
+						<a href="<?php echo $this->getUrl('delete',null,['id'=>$admin->admin_id])?>">
+					Delete</a>
+					</td>					
+
+				</tr>
+
+				<?php
+				}
+				?>
+		</table>
+	</div>
+		<?php $this->setTemplate('html/footer.phtml')->render();?>
+		
+
+</body>
+</html>

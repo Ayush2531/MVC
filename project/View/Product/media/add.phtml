@@ -1,0 +1,39 @@
+<?php $media = $this->media; ?>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Add Media</title>
+	<link rel="stylesheet" type="text/css" href="Skin/css/style.css">
+</head>
+<body>
+	<?php $this->setTemplate('html/header.phtml')->render();?>
+	<form action="<?php echo $this->getUrl('save', null, ['id' => $_GET['product_id']], true);?>" method="post" enctype="multipart/form-data">
+		<div class="add">
+			<div>
+				Add Media
+			</div>
+			<div class="cancel">
+				<a href="<?php echo $this->getUrl('grid', null, ['id' => $_GET['product_id']], true);?>">Cancel</a>
+			</div>
+			<div class="submit">
+				<button type="submit">Save</button>
+			</div>
+		</div>
+		<table>
+			<tr>
+				<td>Name</td>
+				<td>
+					<input type="text" name="media[name]">
+				</td>
+			</tr>
+			
+			<tr>
+				<td>Image</td>
+				<td><input type="file" name="media[file]"></td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<?php
+$vendors = $this->vendors;
+?>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Vendor Grid
+	</title>
+	
+	
+		
+</head>
+<body>
+	<?php $this->setTemplate('html/header.phtml')->render();?>
+	<?php $this->setTemplate('html/message.phtml')->render();?>
+
+	<br><br>
+
+	<div class="body">
+		
+			<h3>MANAGE VENDOR</h3>
+			<button class="body2" type="button" name="Add vendor" value="Add vendor"   ><a href="<?php echo $this->getUrl('add') ?>"> Add vendor </a> </button>
+		</div>
+		<div>
+			<table class="t1" border="1" width="100%">
+				<tr style="border: 1px solid black;">
+					<th>vendor_id</th>
+					<th>first_name</th>
+					<th>last_name</th>
+					<th>email</th>
+					<th>gender</th>
+					<th>mobile</th>
+					<th>status</th>
+					<th>company</th>
+					<th>Edit</a></th>
+					<th>Delete</th>
+				</tr>
+				<?php
+				foreach ($vendors as $vendor ) {
+						
+				?>
+				<tr>
+					<td><?php echo $vendor->vendor_id;?></td>
+					<td><?php echo $vendor->first_name;?></td>
+					<td><?php echo $vendor->last_name?></td>
+					<td><?php echo $vendor->email?></td>
+					<td><?php echo $vendor->gender?></td>
+					<td><?php echo $vendor->mobile?></td>
+					<td><?php echo $vendor->getStatusText(); ?></td>
+					<td><?php echo $vendor->company?></td>
+
+
+					<td>
+						<a href="<?php echo $this->getUrl('edit',null,['id'=>$vendor->vendor_id])?>">
+					Edit</a>
+					</td>
+					<td>
+						<a href="<?php echo $this->getUrl('delete',null,['id'=>$vendor->vendor_id])?>">
+					Delete</a>
+					</td>	
+				</tr>
+				<?php 
+				}
+
+				 ?>
+
+
+			</table>
+		
+</div>
+	<?php $this->setTemplate('html/footer.phtml')->render();?>
+
+
+</body>
+</html>
+
